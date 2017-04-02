@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
+
+import { GlobalRef } from "./globalRefs";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+
+  constructor(private elementRef: ElementRef, private globalRef: GlobalRef) {
+  }
+
+  ngAfterViewInit() {
+    var s = this.globalRef.nativeGlobal.createElement("script");
+    if(s) {
+      s.type = "text/javascript";
+      s.src = "//platform.twitter.com/widgets.js";
+      this.elementRef.nativeElement.appendChild(s);
+    }
+  }
+
 }

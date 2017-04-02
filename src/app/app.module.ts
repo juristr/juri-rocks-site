@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import {  GlobalRef, BrowserGlobalRef } from "./globalRefs";
+
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -16,7 +18,9 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    { provide: GlobalRef, useClass: BrowserGlobalRef }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
