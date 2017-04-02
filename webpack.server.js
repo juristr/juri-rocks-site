@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssUrl = require('postcss-url');
 
-const { NoEmitOnErrorsPlugin, LoaderOptionsPlugin } = require('webpack');
+// const { NoEmitOnErrorsPlugin, LoaderOptionsPlugin } = require('webpack');
 const { GlobCopyWebpackPlugin, BaseHrefWebpackPlugin } = require('@angular/cli/plugins/webpack');
 const { CommonsChunkPlugin } = require('webpack').optimize;
 const { AotPlugin } = require('@ngtools/webpack');
@@ -34,21 +34,16 @@ module.exports = {
       "./node_modules"
     ]
   },
+  "target": "node",
   "entry": {
     "main": [
-      "./src/main.ts"
-    ],
-    "polyfills": [
-      "./src/polyfills.ts"
-    ],
-    "styles": [
-      "./src/styles.css"
+      "./src/main.server.ts"
     ]
   },
   "output": {
     "path": path.join(process.cwd(), "dist"),
-    "filename": "[name].bundle.js",
-    "chunkFilename": "[id].chunk.js"
+    "filename": "[name].server.bundle.js",
+    "chunkFilename": "[id].server.chunk.js"
   },
   "module": {
     "rules": [
@@ -189,7 +184,7 @@ module.exports = {
     ]
   },
   "plugins": [
-    new NoEmitOnErrorsPlugin(),
+    // new NoEmitOnErrorsPlugin(),
     new GlobCopyWebpackPlugin({
       "patterns": [
         "assets",
@@ -231,17 +226,6 @@ module.exports = {
     }
     }),
     new BaseHrefWebpackPlugin({}),
-    new CommonsChunkPlugin({
-      "name": "inline",
-      "minChunks": null
-    }),
-    new CommonsChunkPlugin({
-      "name": "vendor",
-      "minChunks": (module) => module.resource && module.resource.startsWith(nodeModules),
-      "chunks": [
-        "main"
-      ]
-    }),
     new ExtractTextPlugin({
       "filename": "[name].bundle.css",
       "disable": true
@@ -283,12 +267,12 @@ module.exports = {
       }
     }),
     new AotPlugin({
-      "mainPath": "main.ts",
+      "entryModule": __dirname + "/src/app/app.server.module.ts#AppServerModule",
       "hostReplacementPaths": {
-        "environments/environment.ts": "environments/environment.ts"
+        "environments\\environment.ts": "environments\\environment.ts"
       },
       "exclude": [],
-      "tsConfigPath": "src/tsconfig.app.json",
+      "tsConfigPath": "./tsconfig.server.json",
       "skipCodeGeneration": false
     }),
     new webpack.optimize.UglifyJsPlugin()

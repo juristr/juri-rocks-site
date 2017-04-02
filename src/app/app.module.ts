@@ -10,7 +10,9 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({
+        appId: 'juri-rocks-site'
+    }),
     FormsModule,
     HttpModule
   ],
