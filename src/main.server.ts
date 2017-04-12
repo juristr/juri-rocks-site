@@ -9,18 +9,23 @@ import { AppServerModule } from './app/app.server.module';
 import { AppServerModuleNgFactory } from './aot/src/app/app.server.module.ngfactory';
 import * as express from 'express';
 import {ngExpressEngine} from './express-engine';
+// import * as path from 'path';
 
 enableProdMode();
+
+const hostname = '0.0.0.0';
+const port = '80';
 
 const app = express();
 
 app.engine('html', ngExpressEngine({
-	baseUrl: 'http://localhost:8000',
+	baseUrl: `http://${hostname}:${port}/`,
 	bootstrap: [AppServerModuleNgFactory],
 }));
 
 app.set('view engine', 'html');
-app.set('views', '.')
+app.set('views', '.');
+// app.set('views', __dirname + './');
 
 app.get('/', (req, res) => {
 	res.render('index', {req});
@@ -28,6 +33,6 @@ app.get('/', (req, res) => {
 
 app.use(express.static('.'));
 
-app.listen(8000,() => {
-	console.log('listening...');
+app.listen(port, () => {
+	console.log(`Server running at http://${hostname}:${port}/`);
 });
