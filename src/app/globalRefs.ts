@@ -1,14 +1,21 @@
-export interface MyGlobal {
+export interface ICreateElement {
   createElement: Function
 }
 
-export abstract class GlobalRef {
-  abstract get nativeGlobal(): MyGlobal;
+export abstract class CreateElementRef {
+  abstract get nativeGlobal(): ICreateElement;
 }
 
-export class BrowserGlobalRef extends GlobalRef {
-  get nativeGlobal(): MyGlobal { return document as MyGlobal; }
+export class BrowserCreateElementRef extends CreateElementRef {
+  get nativeGlobal(): ICreateElement {
+    return document as ICreateElement;
+  }
 }
-export class NodeGlobalRef extends GlobalRef {
-  get nativeGlobal(): MyGlobal { return { createElement: ()=>{} } as MyGlobal; }
+
+export class NodeCreateElementRef extends CreateElementRef {
+  get nativeGlobal(): ICreateElement {
+    return {
+      createElement: ()=>{}
+    } as ICreateElement;
+  }
 }

@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "ngc:server": "ngc -p tsconfig.server.json",
-    "start": "webpack-dev-server --port=4200",
+    "start": "npm run ngc:server && webpack-dev-server --port=4200",
     "build": "npm run build:client",
     "build:client": "webpack",
     "build:server": "npm run ngc:server && webpack --progress --config webpack.server.config.js",

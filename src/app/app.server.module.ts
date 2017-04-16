@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ServerModule } from '@angular/platform-server';
 import { AppModule } from './app.module';
 
-import {  GlobalRef, NodeGlobalRef } from "./globalRefs";
+import {  CreateElementRef, NodeCreateElementRef } from "./globalRefs";
 
 import { AppComponent } from './app.component';
 
@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
 	  AppComponent
   ],
   providers: [
-    { provide: GlobalRef, useClass: NodeGlobalRef }
+    { provide: CreateElementRef, useClass: NodeCreateElementRef }
   ]
 })
 export class AppServerModule {}

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import {  GlobalRef, BrowserGlobalRef } from "./globalRefs";
+import {  CreateElementRef, BrowserCreateElementRef } from "./globalRefs";
 
 import { AppComponent } from './app.component';
 
@@ -19,7 +19,7 @@ import { AppComponent } from './app.component';
     HttpModule
   ],
   providers: [
-    { provide: GlobalRef, useClass: BrowserGlobalRef }
+    { provide: CreateElementRef, useClass: BrowserCreateElementRef }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,22 @@
+import { Component, ElementRef } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+
+  constructor(private elementRef: ElementRef) {
+  }
+
+  ngAfterViewInit() {
+    let el = document.createElement('script');
+    if(el) {
+      el.type = "text/javascript";
+      el.src = "//platform.twitter.com/widgets.js";
+      this.elementRef.nativeElement.appendChild(el);
+    }
+  }
+
+}

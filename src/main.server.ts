@@ -3,13 +3,12 @@
 // https://github.com/robwormald/ng-universal-demo/
 
 import 'zone.js/dist/zone-node';
-import { platformServer, renderModuleFactory } from '@angular/platform-server';
+import { platformServer } from '@angular/platform-server';
 import { enableProdMode } from '@angular/core';
 import { AppServerModule } from './app/app.server.module';
 import { AppServerModuleNgFactory } from './aot/src/app/app.server.module.ngfactory';
 import * as express from 'express';
 import {ngExpressEngine} from './express-engine';
-// import * as path from 'path';
 
 enableProdMode();
 
@@ -25,7 +24,6 @@ app.engine('html', ngExpressEngine({
 
 app.set('view engine', 'html');
 app.set('views', '.');
-// app.set('views', __dirname + './');
 
 app.get('/', (req, res) => {
 	res.render('index', {req});
