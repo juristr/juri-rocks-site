@@ -11,6 +11,10 @@ body {
     margin: 150px auto;
 }
 
+nav a {
+  color: white;
+}
+
 .profile {
     text-align: center;
 }

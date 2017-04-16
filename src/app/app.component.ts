@@ -11,10 +11,10 @@ export class AppComponent {
   }
 
   ngAfterViewInit() {
-    let el = this.renderer.createElement('script');
-    el.type = "text/javascript";
-    el.src = "//platform.twitter.com/widgets.js";
-    this.renderer.appendChild(this.elementRef.nativeElement, el);
+    // let el = this.renderer.createElement('script');
+    // el.type = "text/javascript";
+    // el.src = "//platform.twitter.com/widgets.js";
+    // this.renderer.appendChild(this.elementRef.nativeElement, el);
   }
 
 }
