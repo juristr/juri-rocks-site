@@ -26,7 +26,7 @@ app.set('view engine', 'html');
 app.set('views', '.');
 
 app.get('/', (req, res) => {
-	res.render('index', {req});
+  res.render('index', {req});
 });
 
 app.use(express.static('.'));
